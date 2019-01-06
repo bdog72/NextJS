@@ -4,41 +4,54 @@ import Link from 'next/link';
 import '../../styles/main.scss';
 
 class Header extends React.Component {
+
+
   render() {
     const title = this.props.title;
 
     return (
       <React.Fragment>
-        <p> {title} </p>
+        <p> { title } </p>
         {this.props.children}
-
-        <p className="customClass">I am a custom p element</p>
-        <p className="customClassFromFile">I am a custom p element</p>
+        <p className='customClass'> I am styled P element </p>
+        <p className='customClassFromFile'> I am styled P element </p>
 
         <Link href="/">
-          <a>Home</a>
+          <a style={{'fontSize': '20px'}}> Home </a>
         </Link>
+
         <Link href="/about">
-          <a>About</a>
+          <a> About </a>
         </Link>
-        <Link href="/blogs">
-          <a>Blogs</a>
-        </Link>
-        <Link href="/cv">
-          <a>Cv</a>
-        </Link>
+
         <Link href="/portfolios">
-          <a>Portfolios</a>
+          <a> Portfolio </a>
+        </Link>
+
+        <Link href="/blogs">
+          <a> Blog </a>
+        </Link>
+
+        <Link href="/cv">
+          <a> CV </a>
         </Link>
         <style jsx>
-          {`
-            a {
-              font-size: 20px;
-            }
-          `}
+         {
+          `
+          a {
+            font-size: 20px;
+          };
+          .customClass {
+            color: red;
+          }
+          `
+         }
         </style>
       </React.Fragment>
-    );
+    )
   }
 }
+
 export default Header;
+
+
