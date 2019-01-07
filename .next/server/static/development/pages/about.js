@@ -88,7 +88,7 @@ module.exports =
 /******/
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 4);
+/******/ 	return __webpack_require__(__webpack_require__.s = 6);
 /******/ })
 /************************************************************************/
 /******/ ({
@@ -172,38 +172,32 @@ function (_React$Component) {
     key: "render",
     value: function render() {
       var title = this.props.title;
-      return react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_1___default.a.Fragment, null, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("p", {
-        className: "jsx-2422458773"
-      }, " ", title, " "), this.props.children, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("p", {
-        className: "jsx-2422458773" + " " + 'customClass'
-      }, " I am styled P element "), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("p", {
-        className: "jsx-2422458773" + " " + 'customClassFromFile'
-      }, " I am styled P element "), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(next_link__WEBPACK_IMPORTED_MODULE_2___default.a, {
+      return react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_1___default.a.Fragment, null, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(next_link__WEBPACK_IMPORTED_MODULE_2___default.a, {
         href: "/"
       }, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("a", {
         style: {
-          'fontSize': '20px'
+          fontSize: '20px'
         },
-        className: "jsx-2422458773"
+        className: "jsx-4242296522"
       }, " Home ")), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(next_link__WEBPACK_IMPORTED_MODULE_2___default.a, {
         href: "/about"
       }, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("a", {
-        className: "jsx-2422458773"
+        className: "jsx-4242296522"
       }, " About ")), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(next_link__WEBPACK_IMPORTED_MODULE_2___default.a, {
         href: "/portfolios"
       }, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("a", {
-        className: "jsx-2422458773"
+        className: "jsx-4242296522"
       }, " Portfolio ")), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(next_link__WEBPACK_IMPORTED_MODULE_2___default.a, {
         href: "/blogs"
       }, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("a", {
-        className: "jsx-2422458773"
+        className: "jsx-4242296522"
       }, " Blog ")), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(next_link__WEBPACK_IMPORTED_MODULE_2___default.a, {
         href: "/cv"
       }, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("a", {
-        className: "jsx-2422458773"
+        className: "jsx-4242296522"
       }, " CV ")), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(styled_jsx_style__WEBPACK_IMPORTED_MODULE_0___default.a, {
-        styleId: "2422458773",
-        css: "a.jsx-2422458773{font-size:20px;}.customClass.jsx-2422458773{color:red;}\n/*# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIi9Vc2Vycy9icmlhbmJ5Y3luc2tpL0Rlc2t0b3AvVWRlbXkvTmV4dEpTLVBvcnRmb2xpby9wb3J0Zm9saW8tYnljeW5za2kvY29tcG9uZW50cy9zaGFyZWQvSGVhZGVyLmpzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQXVDVSxBQUc0QixBQUdMLFVBQ1osS0FIQSIsImZpbGUiOiIvVXNlcnMvYnJpYW5ieWN5bnNraS9EZXNrdG9wL1VkZW15L05leHRKUy1Qb3J0Zm9saW8vcG9ydGZvbGlvLWJ5Y3luc2tpL2NvbXBvbmVudHMvc2hhcmVkL0hlYWRlci5qcyIsInNvdXJjZXNDb250ZW50IjpbImltcG9ydCBSZWFjdCBmcm9tICdyZWFjdCc7XG5pbXBvcnQgTGluayBmcm9tICduZXh0L2xpbmsnO1xuXG5pbXBvcnQgJy4uLy4uL3N0eWxlcy9tYWluLnNjc3MnO1xuXG5jbGFzcyBIZWFkZXIgZXh0ZW5kcyBSZWFjdC5Db21wb25lbnQge1xuXG5cbiAgcmVuZGVyKCkge1xuICAgIGNvbnN0IHRpdGxlID0gdGhpcy5wcm9wcy50aXRsZTtcblxuICAgIHJldHVybiAoXG4gICAgICA8UmVhY3QuRnJhZ21lbnQ+XG4gICAgICAgIDxwPiB7IHRpdGxlIH0gPC9wPlxuICAgICAgICB7dGhpcy5wcm9wcy5jaGlsZHJlbn1cbiAgICAgICAgPHAgY2xhc3NOYW1lPSdjdXN0b21DbGFzcyc+IEkgYW0gc3R5bGVkIFAgZWxlbWVudCA8L3A+XG4gICAgICAgIDxwIGNsYXNzTmFtZT0nY3VzdG9tQ2xhc3NGcm9tRmlsZSc+IEkgYW0gc3R5bGVkIFAgZWxlbWVudCA8L3A+XG5cbiAgICAgICAgPExpbmsgaHJlZj1cIi9cIj5cbiAgICAgICAgICA8YSBzdHlsZT17eydmb250U2l6ZSc6ICcyMHB4J319PiBIb21lIDwvYT5cbiAgICAgICAgPC9MaW5rPlxuXG4gICAgICAgIDxMaW5rIGhyZWY9XCIvYWJvdXRcIj5cbiAgICAgICAgICA8YT4gQWJvdXQgPC9hPlxuICAgICAgICA8L0xpbms+XG5cbiAgICAgICAgPExpbmsgaHJlZj1cIi9wb3J0Zm9saW9zXCI+XG4gICAgICAgICAgPGE+IFBvcnRmb2xpbyA8L2E+XG4gICAgICAgIDwvTGluaz5cblxuICAgICAgICA8TGluayBocmVmPVwiL2Jsb2dzXCI+XG4gICAgICAgICAgPGE+IEJsb2cgPC9hPlxuICAgICAgICA8L0xpbms+XG5cbiAgICAgICAgPExpbmsgaHJlZj1cIi9jdlwiPlxuICAgICAgICAgIDxhPiBDViA8L2E+XG4gICAgICAgIDwvTGluaz5cbiAgICAgICAgPHN0eWxlIGpzeD5cbiAgICAgICAgIHtcbiAgICAgICAgICBgXG4gICAgICAgICAgYSB7XG4gICAgICAgICAgICBmb250LXNpemU6IDIwcHg7XG4gICAgICAgICAgfTtcbiAgICAgICAgICAuY3VzdG9tQ2xhc3Mge1xuICAgICAgICAgICAgY29sb3I6IHJlZDtcbiAgICAgICAgICB9XG4gICAgICAgICAgYFxuICAgICAgICAgfVxuICAgICAgICA8L3N0eWxlPlxuICAgICAgPC9SZWFjdC5GcmFnbWVudD5cbiAgICApXG4gIH1cbn1cblxuZXhwb3J0IGRlZmF1bHQgSGVhZGVyO1xuXG5cbiJdfQ== */\n/*@ sourceURL=/Users/brianbycynski/Desktop/Udemy/NextJS-Portfolio/portfolio-bycynski/components/shared/Header.js */"
+        styleId: "4242296522",
+        css: "a.jsx-4242296522{font-size:20px;}.customClass.jsx-4242296522{color:red;}\n/*# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIi9Vc2Vycy9icmlhbmJ5Y3luc2tpL0Rlc2t0b3AvVWRlbXkvTmV4dEpTLVBvcnRmb2xpby9wb3J0Zm9saW8tYnljeW5za2kvY29tcG9uZW50cy9zaGFyZWQvSGVhZGVyLmpzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQStCVyxBQUc4QixBQUdMLFVBQ1osS0FIQSIsImZpbGUiOiIvVXNlcnMvYnJpYW5ieWN5bnNraS9EZXNrdG9wL1VkZW15L05leHRKUy1Qb3J0Zm9saW8vcG9ydGZvbGlvLWJ5Y3luc2tpL2NvbXBvbmVudHMvc2hhcmVkL0hlYWRlci5qcyIsInNvdXJjZXNDb250ZW50IjpbImltcG9ydCBSZWFjdCBmcm9tICdyZWFjdCc7XG5pbXBvcnQgTGluayBmcm9tICduZXh0L2xpbmsnO1xuXG5pbXBvcnQgJy4uLy4uL3N0eWxlcy9tYWluLnNjc3MnO1xuXG5jbGFzcyBIZWFkZXIgZXh0ZW5kcyBSZWFjdC5Db21wb25lbnQge1xuICByZW5kZXIoKSB7XG4gICAgY29uc3QgdGl0bGUgPSB0aGlzLnByb3BzLnRpdGxlO1xuXG4gICAgcmV0dXJuIChcbiAgICAgIDxSZWFjdC5GcmFnbWVudD5cbiAgICAgICAgPExpbmsgaHJlZj1cIi9cIj5cbiAgICAgICAgICA8YSBzdHlsZT17eyBmb250U2l6ZTogJzIwcHgnIH19PiBIb21lIDwvYT5cbiAgICAgICAgPC9MaW5rPlxuXG4gICAgICAgIDxMaW5rIGhyZWY9XCIvYWJvdXRcIj5cbiAgICAgICAgICA8YT4gQWJvdXQgPC9hPlxuICAgICAgICA8L0xpbms+XG5cbiAgICAgICAgPExpbmsgaHJlZj1cIi9wb3J0Zm9saW9zXCI+XG4gICAgICAgICAgPGE+IFBvcnRmb2xpbyA8L2E+XG4gICAgICAgIDwvTGluaz5cblxuICAgICAgICA8TGluayBocmVmPVwiL2Jsb2dzXCI+XG4gICAgICAgICAgPGE+IEJsb2cgPC9hPlxuICAgICAgICA8L0xpbms+XG5cbiAgICAgICAgPExpbmsgaHJlZj1cIi9jdlwiPlxuICAgICAgICAgIDxhPiBDViA8L2E+XG4gICAgICAgIDwvTGluaz5cbiAgICAgICAgPHN0eWxlIGpzeD5cbiAgICAgICAgICB7YFxuICAgICAgICAgICAgYSB7XG4gICAgICAgICAgICAgIGZvbnQtc2l6ZTogMjBweDtcbiAgICAgICAgICAgIH1cbiAgICAgICAgICAgIC5jdXN0b21DbGFzcyB7XG4gICAgICAgICAgICAgIGNvbG9yOiByZWQ7XG4gICAgICAgICAgICB9XG4gICAgICAgICAgYH1cbiAgICAgICAgPC9zdHlsZT5cbiAgICAgIDwvUmVhY3QuRnJhZ21lbnQ+XG4gICAgKTtcbiAgfVxufVxuXG5leHBvcnQgZGVmYXVsdCBIZWFkZXI7XG4iXX0= */\n/*@ sourceURL=/Users/brianbycynski/Desktop/Udemy/NextJS-Portfolio/portfolio-bycynski/components/shared/Header.js */"
       }));
     }
   }]);
@@ -284,7 +278,7 @@ function (_React$Component) {
 
 /***/ }),
 
-/***/ 4:
+/***/ 6:
 /*!******************************!*\
   !*** multi ./pages/about.js ***!
   \******************************/
