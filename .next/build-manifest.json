@@ -17,7 +17,7 @@
       "static/runtime/webpack.js",
       "static/runtime/main.js"
     ],
-    "/blogs": [
+    "/callback": [
       "static/runtime/webpack.js",
       "static/runtime/main.js"
     ],
@@ -25,11 +25,7 @@
       "static/runtime/webpack.js",
       "static/runtime/main.js"
     ],
-    "/cv": [
-      "static/runtime/webpack.js",
-      "static/runtime/main.js"
-    ],
-    "/about": [
+    "/blogs": [
       "static/runtime/webpack.js",
       "static/runtime/main.js"
     ],
