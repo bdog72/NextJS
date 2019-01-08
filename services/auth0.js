@@ -2,6 +2,8 @@ import auth0 from 'auth0-js';
 import Cookies from 'js-cookie';
 import jwt from 'jsonwebtoken';
 
+import axios from 'axios';
+
 class Auth0 {
   constructor(props) {
     this.auth0 = new auth0.WebAuth({
@@ -65,28 +67,52 @@ class Auth0 {
   //   return new Date().getTime() < expiresAt;
   // }
 
-  verifyToken(token) {
+  async getJWKS() {
+    const res = await axios.get(
+      'https://bozo72.auth0.com/.well-known/jwks.json'
+    );
+    const jwks = res.data;
+    return jwks;
+  }
+
+  async verifyToken(token) {
     if (token) {
-      const decodedToken = jwt.decode(token);
-      const expiresAt = decodedToken.exp * 1000;
+      const decodedToken = jwt.decode(token, { complete: true });
 
-      return decodedToken && new Date().getTime() < expiresAt
-        ? decodedToken
-        : undefined;
+      if (!decodedToken) {
+        return undefined;
+      }
+
+      const jwks = await this.getJWKS();
+      const jwk = jwks.keys[0];
+
+      let cert = jwk.x5c[0];
+      cert = cert.match(/.{1,64}/g).join('\n');
+      cert = `-----BEGIN CERTIFICATE-----\n${cert}\n-----END CERTIFICATE-----\n`;
+
+      if (jwk.kid === decodedToken.header.kid) {
+        try {
+          const verifiedToken = jwt.verify(token, cert);
+          const expiresAt = verifiedToken.exp * 1000;
+          return verifiedToken && new Date().getTime() < expiresAt
+            ? verifiedToken
+            : undefined;
+        } catch (err) {
+          return undefined;
+        }
+      }
     }
-
     return undefined;
   }
 
-  clientAuth() {
-    // debugger;
+  async clientAuth() {
     const token = Cookies.getJSON('jwt');
-    const verifiedToken = this.verifyToken(token);
+    const verifiedToken = await this.verifyToken(token);
 
-    return token;
+    return verifiedToken;
   }
 
-  serverAuth(req) {
+  async serverAuth(req) {
     if (req.headers.cookie) {
       const tokenCookie = req.headers.cookie
         .split(';')
@@ -98,7 +124,7 @@ class Auth0 {
         return undefined;
       }
       const token = tokenCookie.split('=')[1];
-      const verifiedToken = this.verifyToken(token);
+      const verifiedToken = await this.verifyToken(token);
 
       return verifiedToken;
     }

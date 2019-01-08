@@ -192,20 +192,42 @@ function (_App) {
               case 0:
                 Component = _ref.Component, router = _ref.router, ctx = _ref.ctx;
                 pageProps = {};
-                user =  false ? undefined : _services_auth0__WEBPACK_IMPORTED_MODULE_3__["default"].serverAuth(ctx.req);
 
-                if (!Component.getInitialProps) {
-                  _context.next = 7;
+                if (true) {
+                  _context.next = 8;
                   break;
                 }
 
-                _context.next = 6;
+                _context.next = 5;
+                return _services_auth0__WEBPACK_IMPORTED_MODULE_3__["default"].clientAuth();
+
+              case 5:
+                _context.t0 = _context.sent;
+                _context.next = 11;
+                break;
+
+              case 8:
+                _context.next = 10;
+                return _services_auth0__WEBPACK_IMPORTED_MODULE_3__["default"].serverAuth(ctx.req);
+
+              case 10:
+                _context.t0 = _context.sent;
+
+              case 11:
+                user = _context.t0;
+
+                if (!Component.getInitialProps) {
+                  _context.next = 16;
+                  break;
+                }
+
+                _context.next = 15;
                 return Component.getInitialProps(ctx);
 
-              case 6:
+              case 15:
                 pageProps = _context.sent;
 
-              case 7:
+              case 16:
                 auth = {
                   user: user,
                   isAuthenticated: !!user
@@ -215,7 +237,7 @@ function (_App) {
                   auth: auth
                 });
 
-              case 9:
+              case 18:
               case "end":
                 return _context.stop();
             }
@@ -245,17 +267,28 @@ function (_App) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var auth0_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! auth0-js */ "auth0-js");
-/* harmony import */ var auth0_js__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(auth0_js__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var js_cookie__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! js-cookie */ "js-cookie");
-/* harmony import */ var js_cookie__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(js_cookie__WEBPACK_IMPORTED_MODULE_1__);
-/* harmony import */ var jsonwebtoken__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! jsonwebtoken */ "jsonwebtoken");
-/* harmony import */ var jsonwebtoken__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(jsonwebtoken__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/regenerator */ "@babel/runtime/regenerator");
+/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var auth0_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! auth0-js */ "auth0-js");
+/* harmony import */ var auth0_js__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(auth0_js__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var js_cookie__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! js-cookie */ "js-cookie");
+/* harmony import */ var js_cookie__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(js_cookie__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var jsonwebtoken__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! jsonwebtoken */ "jsonwebtoken");
+/* harmony import */ var jsonwebtoken__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(jsonwebtoken__WEBPACK_IMPORTED_MODULE_3__);
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! axios */ "axios");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_4__);
+
+
+function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
+
+function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
+
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
 function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
 
 function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
 
 
 
@@ -267,7 +300,7 @@ function () {
   function Auth0(props) {
     _classCallCheck(this, Auth0);
 
-    this.auth0 = new auth0_js__WEBPACK_IMPORTED_MODULE_0___default.a.WebAuth({
+    this.auth0 = new auth0_js__WEBPACK_IMPORTED_MODULE_1___default.a.WebAuth({
       domain: 'bozo72.auth0.com',
       clientID: 'hlcgDvFQ4F0rucG4g2LQ5pR0mJCRiptz',
       redirectUri: 'http://localhost:3000/callback',
@@ -304,16 +337,16 @@ function () {
       var expiresAt = JSON.stringify(authResult.expiresIn * 1000 + new Date().getTime());
       localStorage.setItem('id_token', authResult.idToken);
       localStorage.setItem('expires_at', expiresAt);
-      js_cookie__WEBPACK_IMPORTED_MODULE_1___default.a.set('user', authResult.idTokenPayload);
-      js_cookie__WEBPACK_IMPORTED_MODULE_1___default.a.set('jwt', authResult.idToken);
-      js_cookie__WEBPACK_IMPORTED_MODULE_1___default.a.set('expiresAt', expiresAt);
+      js_cookie__WEBPACK_IMPORTED_MODULE_2___default.a.set('user', authResult.idTokenPayload);
+      js_cookie__WEBPACK_IMPORTED_MODULE_2___default.a.set('jwt', authResult.idToken);
+      js_cookie__WEBPACK_IMPORTED_MODULE_2___default.a.set('expiresAt', expiresAt);
     }
   }, {
     key: "logout",
     value: function logout() {
-      js_cookie__WEBPACK_IMPORTED_MODULE_1___default.a.remove('user');
-      js_cookie__WEBPACK_IMPORTED_MODULE_1___default.a.remove('jwt');
-      js_cookie__WEBPACK_IMPORTED_MODULE_1___default.a.remove('expiresAt');
+      js_cookie__WEBPACK_IMPORTED_MODULE_2___default.a.remove('user');
+      js_cookie__WEBPACK_IMPORTED_MODULE_2___default.a.remove('jwt');
+      js_cookie__WEBPACK_IMPORTED_MODULE_2___default.a.remove('expiresAt');
       this.auth0.logout({
         returnTo: '',
         clientId: 'hlcgDvFQ4F0rucG4g2LQ5pR0mJCRiptz'
@@ -329,44 +362,187 @@ function () {
     // }
 
   }, {
-    key: "verifyToken",
-    value: function verifyToken(token) {
-      if (token) {
-        var decodedToken = jsonwebtoken__WEBPACK_IMPORTED_MODULE_2___default.a.decode(token);
-        var expiresAt = decodedToken.exp * 1000;
-        return decodedToken && new Date().getTime() < expiresAt ? decodedToken : undefined;
-      }
+    key: "getJWKS",
+    value: function () {
+      var _getJWKS = _asyncToGenerator(
+      /*#__PURE__*/
+      _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee() {
+        var res, jwks;
+        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee$(_context) {
+          while (1) {
+            switch (_context.prev = _context.next) {
+              case 0:
+                _context.next = 2;
+                return axios__WEBPACK_IMPORTED_MODULE_4___default.a.get('https://bozo72.auth0.com/.well-known/jwks.json');
 
-      return undefined;
-    }
+              case 2:
+                res = _context.sent;
+                jwks = res.data;
+                return _context.abrupt("return", jwks);
+
+              case 5:
+              case "end":
+                return _context.stop();
+            }
+          }
+        }, _callee, this);
+      }));
+
+      return function getJWKS() {
+        return _getJWKS.apply(this, arguments);
+      };
+    }()
+  }, {
+    key: "verifyToken",
+    value: function () {
+      var _verifyToken = _asyncToGenerator(
+      /*#__PURE__*/
+      _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee2(token) {
+        var decodedToken, jwks, jwk, cert, verifiedToken, expiresAt;
+        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee2$(_context2) {
+          while (1) {
+            switch (_context2.prev = _context2.next) {
+              case 0:
+                if (!token) {
+                  _context2.next = 21;
+                  break;
+                }
+
+                decodedToken = jsonwebtoken__WEBPACK_IMPORTED_MODULE_3___default.a.decode(token, {
+                  complete: true
+                });
+
+                if (decodedToken) {
+                  _context2.next = 4;
+                  break;
+                }
+
+                return _context2.abrupt("return", undefined);
+
+              case 4:
+                _context2.next = 6;
+                return this.getJWKS();
+
+              case 6:
+                jwks = _context2.sent;
+                jwk = jwks.keys[0];
+                cert = jwk.x5c[0];
+                cert = cert.match(/.{1,64}/g).join('\n');
+                cert = "-----BEGIN CERTIFICATE-----\n".concat(cert, "\n-----END CERTIFICATE-----\n");
+
+                if (!(jwk.kid === decodedToken.header.kid)) {
+                  _context2.next = 21;
+                  break;
+                }
+
+                _context2.prev = 12;
+                verifiedToken = jsonwebtoken__WEBPACK_IMPORTED_MODULE_3___default.a.verify(token, cert);
+                expiresAt = verifiedToken.exp * 1000;
+                return _context2.abrupt("return", verifiedToken && new Date().getTime() < expiresAt ? verifiedToken : undefined);
+
+              case 18:
+                _context2.prev = 18;
+                _context2.t0 = _context2["catch"](12);
+                return _context2.abrupt("return", undefined);
+
+              case 21:
+                return _context2.abrupt("return", undefined);
+
+              case 22:
+              case "end":
+                return _context2.stop();
+            }
+          }
+        }, _callee2, this, [[12, 18]]);
+      }));
+
+      return function verifyToken(_x) {
+        return _verifyToken.apply(this, arguments);
+      };
+    }()
   }, {
     key: "clientAuth",
-    value: function clientAuth() {
-      // debugger;
-      var token = js_cookie__WEBPACK_IMPORTED_MODULE_1___default.a.getJSON('jwt');
-      var verifiedToken = this.verifyToken(token);
-      return token;
-    }
+    value: function () {
+      var _clientAuth = _asyncToGenerator(
+      /*#__PURE__*/
+      _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee3() {
+        var token, verifiedToken;
+        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee3$(_context3) {
+          while (1) {
+            switch (_context3.prev = _context3.next) {
+              case 0:
+                token = js_cookie__WEBPACK_IMPORTED_MODULE_2___default.a.getJSON('jwt');
+                _context3.next = 3;
+                return this.verifyToken(token);
+
+              case 3:
+                verifiedToken = _context3.sent;
+                return _context3.abrupt("return", verifiedToken);
+
+              case 5:
+              case "end":
+                return _context3.stop();
+            }
+          }
+        }, _callee3, this);
+      }));
+
+      return function clientAuth() {
+        return _clientAuth.apply(this, arguments);
+      };
+    }()
   }, {
     key: "serverAuth",
-    value: function serverAuth(req) {
-      if (req.headers.cookie) {
-        var tokenCookie = req.headers.cookie.split(';').find(function (c) {
-          return c.trim().startsWith('jwt=');
-        });
-        var cookies = req.headers.cookies;
+    value: function () {
+      var _serverAuth = _asyncToGenerator(
+      /*#__PURE__*/
+      _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee4(req) {
+        var tokenCookie, cookies, token, verifiedToken;
+        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee4$(_context4) {
+          while (1) {
+            switch (_context4.prev = _context4.next) {
+              case 0:
+                if (!req.headers.cookie) {
+                  _context4.next = 10;
+                  break;
+                }
 
-        if (!tokenCookie) {
-          return undefined;
-        }
+                tokenCookie = req.headers.cookie.split(';').find(function (c) {
+                  return c.trim().startsWith('jwt=');
+                });
+                cookies = req.headers.cookies;
 
-        var token = tokenCookie.split('=')[1];
-        var verifiedToken = this.verifyToken(token);
-        return verifiedToken;
-      }
+                if (tokenCookie) {
+                  _context4.next = 5;
+                  break;
+                }
 
-      return undefined;
-    }
+                return _context4.abrupt("return", undefined);
+
+              case 5:
+                token = tokenCookie.split('=')[1];
+                _context4.next = 8;
+                return this.verifyToken(token);
+
+              case 8:
+                verifiedToken = _context4.sent;
+                return _context4.abrupt("return", verifiedToken);
+
+              case 10:
+                return _context4.abrupt("return", undefined);
+
+              case 11:
+              case "end":
+                return _context4.stop();
+            }
+          }
+        }, _callee4, this);
+      }));
+
+      return function serverAuth(_x2) {
+        return _serverAuth.apply(this, arguments);
+      };
+    }()
   }]);
 
   return Auth0;
@@ -419,6 +595,17 @@ module.exports = require("@babel/runtime/regenerator");
 /***/ (function(module, exports) {
 
 module.exports = require("auth0-js");
+
+/***/ }),
+
+/***/ "axios":
+/*!************************!*\
+  !*** external "axios" ***!
+  \************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = require("axios");
 
 /***/ }),
 
