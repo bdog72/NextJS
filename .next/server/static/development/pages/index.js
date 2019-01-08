@@ -110,10 +110,15 @@ __webpack_require__.r(__webpack_exports__);
 
 var BaseLayout = function BaseLayout(props) {
   var children = props.children,
-      className = props.className;
+      className = props.className,
+      isAuthenticated = props.isAuthenticated,
+      user = props.user;
   return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "layout-container"
-  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_shared_Header__WEBPACK_IMPORTED_MODULE_1__["default"], null), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("main", {
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_shared_Header__WEBPACK_IMPORTED_MODULE_1__["default"], {
+    isAuthenticated: isAuthenticated,
+    user: user
+  }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("main", {
     className: "cover ".concat(className)
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "wrapper"
@@ -141,6 +146,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var reactstrap__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! reactstrap */ "reactstrap");
 /* harmony import */ var reactstrap__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(reactstrap__WEBPACK_IMPORTED_MODULE_2__);
 /* harmony import */ var _services_auth0__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../services/auth0 */ "./services/auth0.js");
+/* harmony import */ var os__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! os */ "os");
+/* harmony import */ var os__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(os__WEBPACK_IMPORTED_MODULE_4__);
 function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -158,6 +165,7 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
 function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
 
 function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
+
 
 
 
@@ -216,6 +224,9 @@ function (_React$Component) {
   }, {
     key: "render",
     value: function render() {
+      var _this$props = this.props,
+          isAuthenticated = _this$props.isAuthenticated,
+          user = _this$props.user;
       return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(reactstrap__WEBPACK_IMPORTED_MODULE_2__["Navbar"], {
         className: "port-navbar port-default absolute",
         color: "transparent",
@@ -257,9 +268,9 @@ function (_React$Component) {
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(BsNavLink, {
         route: "/cv",
         title: "Cv"
-      })), !_services_auth0__WEBPACK_IMPORTED_MODULE_3__["default"].isAuthenticated() && react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(reactstrap__WEBPACK_IMPORTED_MODULE_2__["NavItem"], {
+      })), !isAuthenticated && react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(reactstrap__WEBPACK_IMPORTED_MODULE_2__["NavItem"], {
         className: "port-navbar-item"
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(Login, null)), _services_auth0__WEBPACK_IMPORTED_MODULE_3__["default"].isAuthenticated() && react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(reactstrap__WEBPACK_IMPORTED_MODULE_2__["NavItem"], {
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(Login, null)), isAuthenticated && react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(reactstrap__WEBPACK_IMPORTED_MODULE_2__["NavItem"], {
         className: "port-navbar-item"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(Logout, null))))));
     }
@@ -289,6 +300,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var reactstrap__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! reactstrap */ "reactstrap");
 /* harmony import */ var reactstrap__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(reactstrap__WEBPACK_IMPORTED_MODULE_3__);
 function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
+
+function _extends() { _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; }; return _extends.apply(this, arguments); }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
@@ -329,9 +342,12 @@ function (_React$Component) {
   _createClass(Index, [{
     key: "render",
     value: function render() {
-      return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_layouts_BaseLayout__WEBPACK_IMPORTED_MODULE_2__["default"], {
+      var _this$props$auth = this.props.auth,
+          isAuthenticated = _this$props$auth.isAuthenticated,
+          user = _this$props$auth.user;
+      return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_layouts_BaseLayout__WEBPACK_IMPORTED_MODULE_2__["default"], _extends({
         className: "cover"
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      }, this.props.auth), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "main-section"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "background-image"
@@ -361,7 +377,7 @@ function (_React$Component) {
         className: "hero-welcome-wrapper"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "hero-welcome-text"
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", null, "Welcome to the portfolio website of Filip Jerga. Get informed, collaborate and discover projects I was working on through the years!")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_typed__WEBPACK_IMPORTED_MODULE_1___default.a, {
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", null, isAuthenticated && react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, ' ', react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("b", null, " ", user.name, " "), ' '), "Welcome to the portfolio website of Filip Jerga. Get informed, collaborate and discover projects I was working on through the years!")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_typed__WEBPACK_IMPORTED_MODULE_1___default.a, {
         className: "self-typed",
         loop: true,
         typeSpeed: 70,
@@ -396,11 +412,14 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var auth0_js__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(auth0_js__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var js_cookie__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! js-cookie */ "js-cookie");
 /* harmony import */ var js_cookie__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(js_cookie__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var jsonwebtoken__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! jsonwebtoken */ "jsonwebtoken");
+/* harmony import */ var jsonwebtoken__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(jsonwebtoken__WEBPACK_IMPORTED_MODULE_2__);
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
 function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
 
 function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
 
 
 
@@ -420,8 +439,7 @@ function () {
     });
     this.login = this.login.bind(this);
     this.logout = this.logout.bind(this);
-    this.handleAuthentication = this.handleAuthentication.bind(this);
-    this.isAuthenticated = this.isAuthenticated.bind(this);
+    this.handleAuthentication = this.handleAuthentication.bind(this); // this.isAuthenticated = this.isAuthenticated.bind(this);
   }
 
   _createClass(Auth0, [{
@@ -468,12 +486,49 @@ function () {
     key: "login",
     value: function login() {
       this.auth0.authorize();
+    } // isAuthenticated() {
+    //   const expiresAt = Cookies.getJSON('expiresAt');
+    //   return new Date().getTime() < expiresAt;
+    // }
+
+  }, {
+    key: "verifyToken",
+    value: function verifyToken(token) {
+      if (token) {
+        var decodedToken = jsonwebtoken__WEBPACK_IMPORTED_MODULE_2___default.a.decode(token);
+        var expiresAt = decodedToken.exp * 1000;
+        return decodedToken && new Date().getTime() < expiresAt ? decodedToken : undefined;
+      }
+
+      return undefined;
     }
   }, {
-    key: "isAuthenticated",
-    value: function isAuthenticated() {
-      var expiresAt = js_cookie__WEBPACK_IMPORTED_MODULE_1___default.a.getJSON('expiresAt');
-      return new Date().getTime() < expiresAt;
+    key: "clientAuth",
+    value: function clientAuth() {
+      // debugger;
+      var token = js_cookie__WEBPACK_IMPORTED_MODULE_1___default.a.getJSON('jwt');
+      var verifiedToken = this.verifyToken(token);
+      return token;
+    }
+  }, {
+    key: "serverAuth",
+    value: function serverAuth(req) {
+      if (req.headers.cookie) {
+        var tokenCookie = req.headers.cookie.split(';').find(function (c) {
+          return c.trim().startsWith('jwt=');
+        });
+        var cookies = req.headers.cookies;
+
+        if (!tokenCookie) {
+          return undefined;
+        }
+
+        var token = tokenCookie.split('=')[1];
+        var verifiedToken = this.verifyToken(token);
+        return verifiedToken;
+      }
+
+      return undefined;
     }
   }]);
 
@@ -519,6 +574,17 @@ module.exports = require("js-cookie");
 
 /***/ }),
 
+/***/ "jsonwebtoken":
+/*!*******************************!*\
+  !*** external "jsonwebtoken" ***!
+  \*******************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = require("jsonwebtoken");
+
+/***/ }),
+
 /***/ "next/link":
 /*!****************************!*\
   !*** external "next/link" ***!
@@ -527,6 +593,17 @@ module.exports = require("js-cookie");
 /***/ (function(module, exports) {
 
 module.exports = require("next/link");
+
+/***/ }),
+
+/***/ "os":
+/*!*********************!*\
+  !*** external "os" ***!
+  \*********************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = require("os");
 
 /***/ }),
 
