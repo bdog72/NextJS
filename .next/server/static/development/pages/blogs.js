@@ -88,7 +88,7 @@ module.exports =
 /******/
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 4);
+/******/ 	return __webpack_require__(__webpack_require__.s = 5);
 /******/ })
 /************************************************************************/
 /******/ ({
@@ -214,6 +214,7 @@ var Login = function Login() {
 
 var Logout = function Logout() {
   return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
+    onClick: _services_auth0__WEBPACK_IMPORTED_MODULE_3__["default"].logout,
     className: "nav-link port-navbar-link clickable"
   }, "Logout");
 };
@@ -287,9 +288,9 @@ function (_React$Component) {
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(BsNavLink, {
         route: "/cv",
         title: "Cv"
-      })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(reactstrap__WEBPACK_IMPORTED_MODULE_2__["NavItem"], {
+      })), !_services_auth0__WEBPACK_IMPORTED_MODULE_3__["default"].isAuthenticated() && react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(reactstrap__WEBPACK_IMPORTED_MODULE_2__["NavItem"], {
         className: "port-navbar-item"
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(Login, null)), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(reactstrap__WEBPACK_IMPORTED_MODULE_2__["NavItem"], {
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(Login, null)), _services_auth0__WEBPACK_IMPORTED_MODULE_3__["default"].isAuthenticated() && react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(reactstrap__WEBPACK_IMPORTED_MODULE_2__["NavItem"], {
         className: "port-navbar-item"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(Logout, null))))));
     }
@@ -373,11 +374,14 @@ function (_React$Component) {
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var auth0_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! auth0-js */ "auth0-js");
 /* harmony import */ var auth0_js__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(auth0_js__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var js_cookie__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! js-cookie */ "js-cookie");
+/* harmony import */ var js_cookie__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(js_cookie__WEBPACK_IMPORTED_MODULE_1__);
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
 function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
 
 function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
 
 
 
@@ -395,7 +399,9 @@ function () {
       scope: 'openid profile'
     });
     this.login = this.login.bind(this);
+    this.logout = this.logout.bind(this);
     this.handleAuthentication = this.handleAuthentication.bind(this);
+    this.isAuthenticated = this.isAuthenticated.bind(this);
   }
 
   _createClass(Auth0, [{
@@ -403,21 +409,51 @@ function () {
     value: function handleAuthentication() {
       var _this = this;
 
-      this.auth0.parseHash(function (err, authResult) {
-        if (authResult && authResult.accessToken && authResult.idToken) {
-          _this.setSession(authResult);
-        } else if (err) {
-          console.log(err);
-        }
+      // debugger;
+      return new Promise(function (resolve, reject) {
+        _this.auth0.parseHash(function (err, authResult) {
+          if (authResult && authResult.accessToken && authResult.idToken) {
+            _this.setSession(authResult);
+
+            resolve();
+          } else if (err) {
+            reject(err);
+            console.log(err);
+          }
+        });
       });
     }
   }, {
     key: "setSession",
-    value: function setSession() {}
+    value: function setSession(authResult) {
+      var expiresAt = JSON.stringify(authResult.expiresIn * 1000 + new Date().getTime());
+      localStorage.setItem('id_token', authResult.idToken);
+      localStorage.setItem('expires_at', expiresAt);
+      js_cookie__WEBPACK_IMPORTED_MODULE_1___default.a.set('user', authResult.idTokenPayload);
+      js_cookie__WEBPACK_IMPORTED_MODULE_1___default.a.set('jwt', authResult.idToken);
+      js_cookie__WEBPACK_IMPORTED_MODULE_1___default.a.set('expiresAt', expiresAt);
+    }
+  }, {
+    key: "logout",
+    value: function logout() {
+      js_cookie__WEBPACK_IMPORTED_MODULE_1___default.a.remove('user');
+      js_cookie__WEBPACK_IMPORTED_MODULE_1___default.a.remove('jwt');
+      js_cookie__WEBPACK_IMPORTED_MODULE_1___default.a.remove('expiresAt');
+      this.auth0.logout({
+        returnTo: '',
+        clientId: 'hlcgDvFQ4F0rucG4g2LQ5pR0mJCRiptz'
+      });
+    }
   }, {
     key: "login",
     value: function login() {
       this.auth0.authorize();
+    }
+  }, {
+    key: "isAuthenticated",
+    value: function isAuthenticated() {
+      var expiresAt = js_cookie__WEBPACK_IMPORTED_MODULE_1___default.a.getJSON('expiresAt');
+      return new Date().getTime() < expiresAt;
     }
   }]);
 
@@ -429,7 +465,7 @@ var auth0Client = new Auth0();
 
 /***/ }),
 
-/***/ 4:
+/***/ 5:
 /*!******************************!*\
   !*** multi ./pages/blogs.js ***!
   \******************************/
@@ -449,6 +485,17 @@ module.exports = __webpack_require__(/*! ./pages/blogs.js */"./pages/blogs.js");
 /***/ (function(module, exports) {
 
 module.exports = require("auth0-js");
+
+/***/ }),
+
+/***/ "js-cookie":
+/*!****************************!*\
+  !*** external "js-cookie" ***!
+  \****************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = require("js-cookie");
 
 /***/ }),
 

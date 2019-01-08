@@ -1,4 +1,5 @@
 import auth0 from 'auth0-js';
+import Cookies from 'js-cookie';
 
 class Auth0 {
   constructor(props) {
@@ -10,23 +11,56 @@ class Auth0 {
       scope: 'openid profile'
     });
     this.login = this.login.bind(this);
+    this.logout = this.logout.bind(this);
     this.handleAuthentication = this.handleAuthentication.bind(this);
+    this.isAuthenticated = this.isAuthenticated.bind(this);
   }
 
   handleAuthentication() {
-    this.auth0.parseHash((err, authResult) => {
-      if (authResult && authResult.accessToken && authResult.idToken) {
-        this.setSession(authResult);
-      } else if (err) {
-        console.log(err);
-      }
+    // debugger;
+    return new Promise((resolve, reject) => {
+      this.auth0.parseHash((err, authResult) => {
+        if (authResult && authResult.accessToken && authResult.idToken) {
+          this.setSession(authResult);
+          resolve();
+        } else if (err) {
+          reject(err);
+          console.log(err);
+        }
+      });
     });
   }
 
-  setSession() {}
+  setSession(authResult) {
+    const expiresAt = JSON.stringify(
+      authResult.expiresIn * 1000 + new Date().getTime()
+    );
+    localStorage.setItem('id_token', authResult.idToken);
+    localStorage.setItem('expires_at', expiresAt);
+
+    Cookies.set('user', authResult.idTokenPayload);
+    Cookies.set('jwt', authResult.idToken);
+    Cookies.set('expiresAt', expiresAt);
+  }
+
+  logout() {
+    Cookies.remove('user');
+    Cookies.remove('jwt');
+    Cookies.remove('expiresAt');
+
+    this.auth0.logout({
+      returnTo: '',
+      clientId: 'hlcgDvFQ4F0rucG4g2LQ5pR0mJCRiptz'
+    });
+  }
 
   login() {
     this.auth0.authorize();
+  }
+
+  isAuthenticated() {
+    const expiresAt = Cookies.getJSON('expiresAt');
+    return new Date().getTime() < expiresAt;
   }
 }
 
