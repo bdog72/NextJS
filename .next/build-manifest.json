@@ -17,27 +17,11 @@
       "static/runtime/webpack.js",
       "static/runtime/main.js"
     ],
-    "/secret": [
-      "static/runtime/webpack.js",
-      "static/runtime/main.js"
-    ],
-    "/about": [
-      "static/runtime/webpack.js",
-      "static/runtime/main.js"
-    ],
-    "/portfolios": [
-      "static/runtime/webpack.js",
-      "static/runtime/main.js"
-    ],
-    "/blogs": [
-      "static/runtime/webpack.js",
-      "static/runtime/main.js"
-    ],
     "/cv": [
       "static/runtime/webpack.js",
       "static/runtime/main.js"
     ],
-    "/callback": [
+    "/secret": [
       "static/runtime/webpack.js",
       "static/runtime/main.js"
     ],
