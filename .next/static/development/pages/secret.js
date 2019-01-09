@@ -1,5 +1,75 @@
 ((window["webpackJsonp"] = window["webpackJsonp"] || []).push([["static/development/pages/secret.js"],{
 
+/***/ "./actions/index.js":
+/*!**************************!*\
+  !*** ./actions/index.js ***!
+  \**************************/
+/*! exports provided: getSecretData */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "getSecretData", function() { return getSecretData; });
+/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/regenerator */ "./node_modules/@babel/runtime/regenerator/index.js");
+/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var js_cookie__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! js-cookie */ "./node_modules/js-cookie/src/js.cookie.js");
+/* harmony import */ var js_cookie__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(js_cookie__WEBPACK_IMPORTED_MODULE_2__);
+
+
+function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
+
+function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
+
+
+
+
+var setAuthHeader = function setAuthHeader() {
+  var token = js_cookie__WEBPACK_IMPORTED_MODULE_2___default.a.getJSON('jwt');
+
+  if (token) {
+    return {
+      headers: {
+        authorization: "Bearer ".concat(js_cookie__WEBPACK_IMPORTED_MODULE_2___default.a.getJSON('jwt'))
+      }
+    };
+  }
+};
+
+var getSecretData =
+/*#__PURE__*/
+function () {
+  var _ref = _asyncToGenerator(
+  /*#__PURE__*/
+  _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee() {
+    return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee$(_context) {
+      while (1) {
+        switch (_context.prev = _context.next) {
+          case 0:
+            _context.next = 2;
+            return axios__WEBPACK_IMPORTED_MODULE_1___default.a.get('/api/v1/secret', setAuthHeader()).then(function (response) {
+              return response.data;
+            });
+
+          case 2:
+            return _context.abrupt("return", _context.sent);
+
+          case 3:
+          case "end":
+            return _context.stop();
+        }
+      }
+    }, _callee, this);
+  }));
+
+  return function getSecretData() {
+    return _ref.apply(this, arguments);
+  };
+}();
+
+/***/ }),
+
 /***/ "./components/BasePage.js":
 /*!********************************!*\
   !*** ./components/BasePage.js ***!
@@ -48317,8 +48387,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _components_layouts_BaseLayout__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../components/layouts/BaseLayout */ "./components/layouts/BaseLayout.js");
 /* harmony import */ var _components_BasePage__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../components/BasePage */ "./components/BasePage.js");
 /* harmony import */ var _components_hoc_withAuth__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../components/hoc/withAuth */ "./components/hoc/withAuth.js");
-/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
-/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_5__);
+/* harmony import */ var _actions__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../actions */ "./actions/index.js");
 
 
 function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
@@ -48348,6 +48417,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
 
 
+ // import axios from 'axios';
 
 
 
@@ -48382,22 +48452,21 @@ function (_React$Component) {
       var _componentDidMount = _asyncToGenerator(
       /*#__PURE__*/
       _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee() {
-        var res, secretData;
+        var secretData;
         return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee$(_context) {
           while (1) {
             switch (_context.prev = _context.next) {
               case 0:
                 _context.next = 2;
-                return axios__WEBPACK_IMPORTED_MODULE_5___default.a.get('/api/v1/secret');
+                return Object(_actions__WEBPACK_IMPORTED_MODULE_5__["getSecretData"])();
 
               case 2:
-                res = _context.sent;
-                secretData = res.data;
+                secretData = _context.sent;
                 this.setState({
                   secretData: secretData
                 });
 
-              case 5:
+              case 4:
               case "end":
                 return _context.stop();
             }
@@ -48766,20 +48835,6 @@ var auth0Client = new Auth0();
 
 /***/ }),
 
-/***/ 10:
-/*!*******************************!*\
-  !*** multi ./pages/secret.js ***!
-  \*******************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-__NEXT_REGISTER_PAGE('/secret', function() {
-module.exports = __webpack_require__(/*! ./pages/secret.js */"./pages/secret.js");
-
-return { page: module.exports.default }});
-
-/***/ }),
-
 /***/ 2:
 /*!**********************!*\
   !*** util (ignored) ***!
@@ -48824,6 +48879,20 @@ return { page: module.exports.default }});
 
 /***/ }),
 
+/***/ 9:
+/*!*******************************!*\
+  !*** multi ./pages/secret.js ***!
+  \*******************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+__NEXT_REGISTER_PAGE('/secret', function() {
+module.exports = __webpack_require__(/*! ./pages/secret.js */"./pages/secret.js");
+
+return { page: module.exports.default }});
+
+/***/ }),
+
 /***/ "dll-reference dll_10edf27d814a728d21af":
 /*!*******************************************!*\
   !*** external "dll_10edf27d814a728d21af" ***!
@@ -48835,5 +48904,5 @@ module.exports = dll_10edf27d814a728d21af;
 
 /***/ })
 
-},[[10,"static/runtime/webpack.js"]]]));;
+},[[9,"static/runtime/webpack.js"]]]));;
 //# sourceMappingURL=secret.js.map

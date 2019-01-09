@@ -54558,6 +54558,20 @@ var auth0Client = new Auth0();
 
 /***/ }),
 
+/***/ 10:
+/*!******************************!*\
+  !*** multi ./pages/index.js ***!
+  \******************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+__NEXT_REGISTER_PAGE('/', function() {
+module.exports = __webpack_require__(/*! ./pages/index.js */"./pages/index.js");
+
+return { page: module.exports.default }});
+
+/***/ }),
+
 /***/ 2:
 /*!**********************!*\
   !*** util (ignored) ***!
@@ -54602,20 +54616,6 @@ var auth0Client = new Auth0();
 
 /***/ }),
 
-/***/ 9:
-/*!******************************!*\
-  !*** multi ./pages/index.js ***!
-  \******************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-__NEXT_REGISTER_PAGE('/', function() {
-module.exports = __webpack_require__(/*! ./pages/index.js */"./pages/index.js");
-
-return { page: module.exports.default }});
-
-/***/ }),
-
 /***/ "dll-reference dll_10edf27d814a728d21af":
 /*!*******************************************!*\
   !*** external "dll_10edf27d814a728d21af" ***!
@@ -54627,5 +54627,5 @@ module.exports = dll_10edf27d814a728d21af;
 
 /***/ })
 
-},[[9,"static/runtime/webpack.js"]]]));;
+},[[10,"static/runtime/webpack.js"]]]));;
 //# sourceMappingURL=index.js.map
