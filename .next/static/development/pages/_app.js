@@ -1,5 +1,29 @@
 ((window["webpackJsonp"] = window["webpackJsonp"] || []).push([["static/development/pages/_app.js"],{
 
+/***/ "./helpers/utils.js":
+/*!**************************!*\
+  !*** ./helpers/utils.js ***!
+  \**************************/
+/*! exports provided: getCookieFromReq */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "getCookieFromReq", function() { return getCookieFromReq; });
+var getCookieFromReq = function getCookieFromReq(req, cookieKey) {
+  var cookie = req.headers.cookie.split(';').find(function (c) {
+    return c.trim().startsWith("".concat(cookieKey, "="));
+  }); // const cookies = req.headers.cookies;
+
+  if (!cookie) {
+    return undefined;
+  }
+
+  return cookie.split('=')[1];
+};
+
+/***/ }),
+
 /***/ "./node_modules/@babel/runtime-corejs2/core-js/array/is-array.js":
 /*!***********************************************************************!*\
   !*** ./node_modules/@babel/runtime-corejs2/core-js/array/is-array.js ***!
@@ -37340,6 +37364,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var jsonwebtoken__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(jsonwebtoken__WEBPACK_IMPORTED_MODULE_3__);
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_4__);
+/* harmony import */ var _helpers_utils__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../helpers/utils */ "./helpers/utils.js");
 
 
 function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
@@ -37351,6 +37376,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
 
 function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
 
 
 
@@ -37560,41 +37586,35 @@ function () {
       var _serverAuth = _asyncToGenerator(
       /*#__PURE__*/
       _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee4(req) {
-        var tokenCookie, cookies, token, verifiedToken;
+        var token, verifiedToken;
         return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee4$(_context4) {
           while (1) {
             switch (_context4.prev = _context4.next) {
               case 0:
                 if (!req.headers.cookie) {
-                  _context4.next = 10;
+                  _context4.next = 6;
                   break;
                 }
 
-                tokenCookie = req.headers.cookie.split(';').find(function (c) {
-                  return c.trim().startsWith('jwt=');
-                });
-                cookies = req.headers.cookies;
-
-                if (tokenCookie) {
-                  _context4.next = 5;
-                  break;
-                }
-
-                return _context4.abrupt("return", undefined);
-
-              case 5:
-                token = tokenCookie.split('=')[1];
-                _context4.next = 8;
+                // const tokenCookie = req.headers.cookie
+                //   .split(';')
+                //   .find(c => c.trim().startsWith('jwt='));
+                // const cookies = req.headers.cookies;
+                // if (!tokenCookie) {
+                //   return undefined;
+                // }
+                token = Object(_helpers_utils__WEBPACK_IMPORTED_MODULE_5__["getCookieFromReq"])(req, 'jwt');
+                _context4.next = 4;
                 return this.verifyToken(token);
 
-              case 8:
+              case 4:
                 verifiedToken = _context4.sent;
                 return _context4.abrupt("return", verifiedToken);
 
-              case 10:
+              case 6:
                 return _context4.abrupt("return", undefined);
 
-              case 11:
+              case 7:
               case "end":
                 return _context4.stop();
             }

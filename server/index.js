@@ -34,7 +34,7 @@ app
     });
 
     server.use(function(err, req, res, next) {
-      if (err.name === 'UnauthorizedError') {
+      if (err.name === 'Unauthorized Error') {
         res
           .status(401)
           .send({ title: 'Unauthorized', detail: 'Unauthorized Access!' });

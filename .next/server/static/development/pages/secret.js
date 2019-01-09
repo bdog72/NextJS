@@ -109,6 +109,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_1__);
 /* harmony import */ var js_cookie__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! js-cookie */ "js-cookie");
 /* harmony import */ var js_cookie__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(js_cookie__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var _helpers_utils__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../helpers/utils */ "./helpers/utils.js");
 
 
 function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
@@ -118,16 +119,19 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 
 
 
-var setAuthHeader = function setAuthHeader() {
-  var token = js_cookie__WEBPACK_IMPORTED_MODULE_2___default.a.getJSON('jwt');
+
+var setAuthHeader = function setAuthHeader(req) {
+  var token = req ? Object(_helpers_utils__WEBPACK_IMPORTED_MODULE_3__["getCookieFromReq"])(req, 'jwt') : js_cookie__WEBPACK_IMPORTED_MODULE_2___default.a.getJSON('jwt');
 
   if (token) {
     return {
       headers: {
-        authorization: "Bearer ".concat(js_cookie__WEBPACK_IMPORTED_MODULE_2___default.a.getJSON('jwt'))
+        authorization: "Bearer ".concat(token)
       }
     };
   }
+
+  return undefined;
 };
 
 var getSecretData =
@@ -135,20 +139,22 @@ var getSecretData =
 function () {
   var _ref = _asyncToGenerator(
   /*#__PURE__*/
-  _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee() {
+  _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee(req) {
+    var url;
     return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee$(_context) {
       while (1) {
         switch (_context.prev = _context.next) {
           case 0:
-            _context.next = 2;
-            return axios__WEBPACK_IMPORTED_MODULE_1___default.a.get('/api/v1/secret', setAuthHeader()).then(function (response) {
+            url = 'http://localhost:3000/api/v1/secret';
+            _context.next = 3;
+            return axios__WEBPACK_IMPORTED_MODULE_1___default.a.get(url, setAuthHeader(req)).then(function (response) {
               return response.data;
             });
 
-          case 2:
+          case 3:
             return _context.abrupt("return", _context.sent);
 
-          case 3:
+          case 4:
           case "end":
             return _context.stop();
         }
@@ -156,7 +162,7 @@ function () {
     }, _callee, this);
   }));
 
-  return function getSecretData() {
+  return function getSecretData(_x) {
     return _ref.apply(this, arguments);
   };
 }();
@@ -511,6 +517,30 @@ function (_React$Component) {
 
 /***/ }),
 
+/***/ "./helpers/utils.js":
+/*!**************************!*\
+  !*** ./helpers/utils.js ***!
+  \**************************/
+/*! exports provided: getCookieFromReq */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "getCookieFromReq", function() { return getCookieFromReq; });
+var getCookieFromReq = function getCookieFromReq(req, cookieKey) {
+  var cookie = req.headers.cookie.split(';').find(function (c) {
+    return c.trim().startsWith("".concat(cookieKey, "="));
+  }); // const cookies = req.headers.cookies;
+
+  if (!cookie) {
+    return undefined;
+  }
+
+  return cookie.split('=')[1];
+};
+
+/***/ }),
+
 /***/ "./pages/secret.js":
 /*!*************************!*\
   !*** ./pages/secret.js ***!
@@ -557,7 +587,6 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
 
 
- // import axios from 'axios';
 
 
 
@@ -641,18 +670,37 @@ function (_React$Component) {
     }
   }], [{
     key: "getInitialProps",
-    value: function getInitialProps() {
-      var superSecretValue = 'Super Secret Value';
-      return {
-        superSecretValue: superSecretValue
-      };
-    } // constructor(props) {
-    //   super(props);
-    //   this.state = {
-    //     secretData: []
-    //   };
-    // }
+    value: function () {
+      var _getInitialProps = _asyncToGenerator(
+      /*#__PURE__*/
+      _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee2(_ref) {
+        var req, anotherSecretData;
+        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee2$(_context2) {
+          while (1) {
+            switch (_context2.prev = _context2.next) {
+              case 0:
+                req = _ref.req;
+                _context2.next = 3;
+                return Object(_actions__WEBPACK_IMPORTED_MODULE_5__["getSecretData"])(req);
 
+              case 3:
+                anotherSecretData = _context2.sent;
+                return _context2.abrupt("return", {
+                  anotherSecretData: anotherSecretData
+                });
+
+              case 5:
+              case "end":
+                return _context2.stop();
+            }
+          }
+        }, _callee2, this);
+      }));
+
+      return function getInitialProps(_x) {
+        return _getInitialProps.apply(this, arguments);
+      };
+    }()
   }]);
 
   return Secret;
@@ -681,6 +729,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var jsonwebtoken__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(jsonwebtoken__WEBPACK_IMPORTED_MODULE_3__);
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! axios */ "axios");
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_4__);
+/* harmony import */ var _helpers_utils__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../helpers/utils */ "./helpers/utils.js");
 
 
 function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
@@ -692,6 +741,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
 
 function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
 
 
 
@@ -901,41 +951,35 @@ function () {
       var _serverAuth = _asyncToGenerator(
       /*#__PURE__*/
       _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee4(req) {
-        var tokenCookie, cookies, token, verifiedToken;
+        var token, verifiedToken;
         return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee4$(_context4) {
           while (1) {
             switch (_context4.prev = _context4.next) {
               case 0:
                 if (!req.headers.cookie) {
-                  _context4.next = 10;
+                  _context4.next = 6;
                   break;
                 }
 
-                tokenCookie = req.headers.cookie.split(';').find(function (c) {
-                  return c.trim().startsWith('jwt=');
-                });
-                cookies = req.headers.cookies;
-
-                if (tokenCookie) {
-                  _context4.next = 5;
-                  break;
-                }
-
-                return _context4.abrupt("return", undefined);
-
-              case 5:
-                token = tokenCookie.split('=')[1];
-                _context4.next = 8;
+                // const tokenCookie = req.headers.cookie
+                //   .split(';')
+                //   .find(c => c.trim().startsWith('jwt='));
+                // const cookies = req.headers.cookies;
+                // if (!tokenCookie) {
+                //   return undefined;
+                // }
+                token = Object(_helpers_utils__WEBPACK_IMPORTED_MODULE_5__["getCookieFromReq"])(req, 'jwt');
+                _context4.next = 4;
                 return this.verifyToken(token);
 
-              case 8:
+              case 4:
                 verifiedToken = _context4.sent;
                 return _context4.abrupt("return", verifiedToken);
 
-              case 10:
+              case 6:
                 return _context4.abrupt("return", undefined);
 
-              case 11:
+              case 7:
               case "end":
                 return _context4.stop();
             }
