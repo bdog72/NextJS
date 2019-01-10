@@ -88,7 +88,7 @@ module.exports =
 /******/
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 3);
+/******/ 	return __webpack_require__(__webpack_require__.s = 4);
 /******/ })
 /************************************************************************/
 /******/ ({
@@ -246,83 +246,100 @@ function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || func
 
 
 
-/* harmony default export */ __webpack_exports__["default"] = (function (Component) {
-  return (
-    /*#__PURE__*/
-    function (_React$Component) {
-      _inherits(withAuth, _React$Component);
+var namespace = 'http://localhost:3000/';
+/* harmony default export */ __webpack_exports__["default"] = (function (role) {
+  return function (Component) {
+    return (
+      /*#__PURE__*/
+      function (_React$Component) {
+        _inherits(withAuth, _React$Component);
 
-      function withAuth() {
-        _classCallCheck(this, withAuth);
+        function withAuth() {
+          _classCallCheck(this, withAuth);
 
-        return _possibleConstructorReturn(this, _getPrototypeOf(withAuth).apply(this, arguments));
-      }
-
-      _createClass(withAuth, [{
-        key: "renderProtectedPage",
-        value: function renderProtectedPage() {
-          var isAuthenticated = this.props.auth.isAuthenticated;
-
-          if (isAuthenticated) {
-            return react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(Component, this.props);
-          } else {
-            return react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(_layouts_BaseLayout__WEBPACK_IMPORTED_MODULE_2__["default"], this.props.auth, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(_BasePage__WEBPACK_IMPORTED_MODULE_3__["default"], null, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("h1", null, "You are not authenticated please login to view this page ")));
-          }
+          return _possibleConstructorReturn(this, _getPrototypeOf(withAuth).apply(this, arguments));
         }
-      }, {
-        key: "render",
-        value: function render() {
-          return this.renderProtectedPage();
-        }
-      }], [{
-        key: "getInitialProps",
-        value: function () {
-          var _getInitialProps = _asyncToGenerator(
-          /*#__PURE__*/
-          _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee(args) {
-            var pageProps;
-            return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee$(_context) {
-              while (1) {
-                switch (_context.prev = _context.next) {
-                  case 0:
-                    _context.next = 2;
-                    return Component.getInitialProps;
 
-                  case 2:
-                    _context.t0 = _context.sent;
+        _createClass(withAuth, [{
+          key: "renderProtectedPage",
+          value: function renderProtectedPage() {
+            var _this$props$auth = this.props.auth,
+                isAuthenticated = _this$props$auth.isAuthenticated,
+                user = _this$props$auth.user;
+            var userRole = user && user["".concat(namespace, "role")];
+            var isAuthorized = false;
 
-                    if (!_context.t0) {
-                      _context.next = 7;
-                      break;
-                    }
-
-                    _context.next = 6;
-                    return Component.getInitialProps(args);
-
-                  case 6:
-                    _context.t0 = _context.sent;
-
-                  case 7:
-                    pageProps = _context.t0;
-                    return _context.abrupt("return", _objectSpread({}, pageProps));
-
-                  case 9:
-                  case "end":
-                    return _context.stop();
-                }
+            if (role) {
+              if (userRole && userRole === role) {
+                isAuthorized = true;
               }
-            }, _callee, this);
-          }));
+            } else {
+              isAuthorized = true;
+            }
 
-          return function getInitialProps(_x) {
-            return _getInitialProps.apply(this, arguments);
-          };
-        }()
-      }]);
+            if (!isAuthenticated) {
+              return react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(_layouts_BaseLayout__WEBPACK_IMPORTED_MODULE_2__["default"], this.props.auth, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(_BasePage__WEBPACK_IMPORTED_MODULE_3__["default"], null, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("h1", null, "You are not authenticated. Please login to view this page", ' ')));
+            } else if (!isAuthorized) {
+              return react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(_layouts_BaseLayout__WEBPACK_IMPORTED_MODULE_2__["default"], this.props.auth, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(_BasePage__WEBPACK_IMPORTED_MODULE_3__["default"], null, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("h1", null, "You are not authorized. You dont have permission to visit this page", ' ')));
+            } else {
+              return react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(Component, this.props);
+            }
+          }
+        }, {
+          key: "render",
+          value: function render() {
+            return this.renderProtectedPage();
+          }
+        }], [{
+          key: "getInitialProps",
+          value: function () {
+            var _getInitialProps = _asyncToGenerator(
+            /*#__PURE__*/
+            _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee(args) {
+              var pageProps;
+              return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee$(_context) {
+                while (1) {
+                  switch (_context.prev = _context.next) {
+                    case 0:
+                      _context.next = 2;
+                      return Component.getInitialProps;
 
-      return withAuth;
-    }(react__WEBPACK_IMPORTED_MODULE_1___default.a.Component)
-  );
+                    case 2:
+                      _context.t0 = _context.sent;
+
+                      if (!_context.t0) {
+                        _context.next = 7;
+                        break;
+                      }
+
+                      _context.next = 6;
+                      return Component.getInitialProps(args);
+
+                    case 6:
+                      _context.t0 = _context.sent;
+
+                    case 7:
+                      pageProps = _context.t0;
+                      return _context.abrupt("return", _objectSpread({}, pageProps));
+
+                    case 9:
+                    case "end":
+                      return _context.stop();
+                  }
+                }
+              }, _callee, this);
+            }));
+
+            return function getInitialProps(_x) {
+              return _getInitialProps.apply(this, arguments);
+            };
+          }()
+        }]);
+
+        return withAuth;
+      }(react__WEBPACK_IMPORTED_MODULE_1___default.a.Component)
+    );
+  };
 });
 
 /***/ }),
@@ -706,7 +723,7 @@ function (_React$Component) {
   return Secret;
 }(react__WEBPACK_IMPORTED_MODULE_1___default.a.Component);
 
-/* harmony default export */ __webpack_exports__["default"] = (Object(_components_hoc_withAuth__WEBPACK_IMPORTED_MODULE_4__["default"])(Secret));
+/* harmony default export */ __webpack_exports__["default"] = (Object(_components_hoc_withAuth__WEBPACK_IMPORTED_MODULE_4__["default"])()(Secret));
 
 /***/ }),
 
@@ -1001,7 +1018,7 @@ var auth0Client = new Auth0();
 
 /***/ }),
 
-/***/ 3:
+/***/ 4:
 /*!*******************************!*\
   !*** multi ./pages/secret.js ***!
   \*******************************/
