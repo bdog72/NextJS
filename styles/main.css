@@ -28,7 +28,6 @@
 
 .cover {
   background-image: linear-gradient(45deg, #00aeef 0%, #096fb9 100%);
-  overflow: hidden;
   position: relative;
 }
 
@@ -203,5 +202,14 @@ body {
 .base-page {
   padding-top: 150px;
   color: white;
+  background-color: #ecedee;
+  min-height: 100vh;
+}
+
+.base-page .page-header .page-header-title {
+  font-weight: 700;
+  color: black;
+  display: inline-block;
+  margin-bottom: 20px;
 }
 /*# sourceMappingURL=main.css.map */

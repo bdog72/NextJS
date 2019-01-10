@@ -113,9 +113,11 @@ var BaseLayout = function BaseLayout(props) {
       className = props.className,
       isAuthenticated = props.isAuthenticated,
       user = props.user;
+  var headerType = props.headerType || 'default';
   return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "layout-container"
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_shared_Header__WEBPACK_IMPORTED_MODULE_1__["default"], {
+    className: "port-nav-".concat(headerType),
     isAuthenticated: isAuthenticated,
     user: user
   }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("main", {
@@ -226,9 +228,10 @@ function (_React$Component) {
     value: function render() {
       var _this$props = this.props,
           isAuthenticated = _this$props.isAuthenticated,
-          user = _this$props.user;
+          user = _this$props.user,
+          className = _this$props.className;
       return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(reactstrap__WEBPACK_IMPORTED_MODULE_2__["Navbar"], {
-        className: "port-navbar port-default absolute",
+        className: "port-navbar port-nav-base absolute ".concat(className),
         color: "transparent",
         dark: true,
         expand: "md"
@@ -371,7 +374,9 @@ function (_React$Component) {
           user = _this$props$auth.user;
       return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_layouts_BaseLayout__WEBPACK_IMPORTED_MODULE_2__["default"], _extends({
         className: "cover"
-      }, this.props.auth), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      }, this.props.auth, {
+        headerType: "index"
+      }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "main-section"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "background-image"
