@@ -29,6 +29,15 @@ app
       return res.json(SecretData);
     });
 
+    server.get(
+      '/api/v1/onlysiteowner',
+      authService.checkJWT,
+      authService.checkRole('siteOwner'),
+      (req, res) => {
+        return res.json(SecretData);
+      }
+    );
+
     server.get('*', (req, res) => {
       return handle(req, res);
     });
