@@ -129,6 +129,113 @@ BasePage.defaultProps = {
 
 /***/ }),
 
+/***/ "./components/form/PortDate.js":
+/*!*************************************!*\
+  !*** ./components/form/PortDate.js ***!
+  \*************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return PortDate; });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "react");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var react_datepicker__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-datepicker */ "react-datepicker");
+/* harmony import */ var react_datepicker__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(react_datepicker__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var moment__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! moment */ "moment");
+/* harmony import */ var moment__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(moment__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var reactstrap__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! reactstrap */ "reactstrap");
+/* harmony import */ var reactstrap__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(reactstrap__WEBPACK_IMPORTED_MODULE_3__);
+/* harmony import */ var react_datepicker_dist_react_datepicker_css__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! react-datepicker/dist/react-datepicker.css */ "./node_modules/react-datepicker/dist/react-datepicker.css");
+/* harmony import */ var react_datepicker_dist_react_datepicker_css__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(react_datepicker_dist_react_datepicker_css__WEBPACK_IMPORTED_MODULE_4__);
+function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
+
+function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
+
+function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
+
+function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
+
+
+
+
+
+
+
+var PortDate =
+/*#__PURE__*/
+function (_React$Component) {
+  _inherits(PortDate, _React$Component);
+
+  function PortDate(props) {
+    var _this;
+
+    _classCallCheck(this, PortDate);
+
+    _this = _possibleConstructorReturn(this, _getPrototypeOf(PortDate).call(this, props));
+    _this.state = {
+      dateValue: moment__WEBPACK_IMPORTED_MODULE_2___default()()
+    };
+    _this.handleChange = _this.handleChange.bind(_assertThisInitialized(_assertThisInitialized(_this)));
+    return _this;
+  }
+
+  _createClass(PortDate, [{
+    key: "handleChange",
+    value: function handleChange(date) {
+      var _this$props$form = this.props.form,
+          setFieldValue = _this$props$form.setFieldValue,
+          setFieldTouched = _this$props$form.setFieldTouched;
+      var name = this.props.field.name;
+      this.setState({
+        dateValue: date
+      });
+      setFieldValue(name, date, true);
+      setFieldTouched(name, true, true);
+    }
+  }, {
+    key: "render",
+    value: function render() {
+      var _this$props = this.props,
+          label = _this$props.label,
+          field = _this$props.field,
+          _this$props$form2 = _this$props.form,
+          touched = _this$props$form2.touched,
+          errors = _this$props$form2.errors;
+      return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(reactstrap__WEBPACK_IMPORTED_MODULE_3__["FormGroup"], null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(reactstrap__WEBPACK_IMPORTED_MODULE_3__["Label"], null, label), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "input-group"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_datepicker__WEBPACK_IMPORTED_MODULE_1___default.a, {
+        selected: this.state.dateValue,
+        onChange: this.handleChange,
+        peekNextMonth: true,
+        showMonthDropdown: true,
+        showYearDropdown: true,
+        maxDate: moment__WEBPACK_IMPORTED_MODULE_2___default()(),
+        dropdownMode: "select"
+      })), touched[field.name] && errors[field.name] && react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "error"
+      }, errors[field.name]));
+    }
+  }]);
+
+  return PortDate;
+}(react__WEBPACK_IMPORTED_MODULE_0___default.a.Component);
+
+
+
+/***/ }),
+
 /***/ "./components/form/PortInput.js":
 /*!**************************************!*\
   !*** ./components/form/PortInput.js ***!
@@ -370,18 +477,61 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var reactstrap__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! reactstrap */ "reactstrap");
 /* harmony import */ var reactstrap__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(reactstrap__WEBPACK_IMPORTED_MODULE_2__);
 /* harmony import */ var _form_PortInput__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../form/PortInput */ "./components/form/PortInput.js");
+/* harmony import */ var _form_PortDate__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../form/PortDate */ "./components/form/PortDate.js");
+function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _nonIterableRest(); }
+
+function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance"); }
+
+function _iterableToArrayLimit(arr, i) { var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
+
+function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
+
 // Render Prop
 
 
 
 
+ // ----------This code works----------
+// const validateInputs = values => {
+//   let errors = {};
+//   // Object.entries(values).forEach((key, value) => {
+//   //   if (
+//   //     !values[key] &&
+//   //     (values[key] === 'startDate' || values[key] === 'endDate')
+//   //   ) {
+//   //     errors[key] = `Field ${key} is required`;
+//   //   }
+//   // });
+//   Object.entries(values).forEach(([key, value]) => {
+//     if (!values[key]) {
+//       errors[key] = `Field ${key} is required`;
+//     }
+//   });
+//   const startDate = values.startDate;
+//   const endDate = values.endDate;
+//   if (startDate && endDate && endDate.isBefore(startDate)) {
+//     errors.endDate = 'End date cannot be before start date!';
+//   }
+//   return errors;
+// };
 
-var validateInputs = function validateInputs(validate) {
-  var errors = {}; // if (!values.email) {
-  //   errors.email = 'Required';
-  // } else if (!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i.test(values.email)) {
-  //   errors.email = 'Invalid email address';
-  // }
+var validateInputs = function validateInputs(values) {
+  var errors = {};
+  Object.entries(values).forEach(function (_ref) {
+    var _ref2 = _slicedToArray(_ref, 2),
+        key = _ref2[0],
+        value = _ref2[1];
+
+    if (!values[key] && values[key] === 'startDate' || values[key] === 'endDate') {
+      errors[key] = "Field ".concat(key, " is required");
+    }
+  });
+  var startDate = values.startDate;
+  var endDate = values.endDate;
+
+  if (startDate && endDate && endDate.isBefore(startDate)) {
+    errors.endDate = 'End date cannot be before start date!';
+  }
 
   return errors;
 };
@@ -400,15 +550,15 @@ var PortfolioCreateForm = function PortfolioCreateForm() {
   return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(formik__WEBPACK_IMPORTED_MODULE_1__["Formik"], {
     initialValues: INITIAL_VALUES,
     validate: validateInputs,
-    onSubmit: function onSubmit(values, _ref) {
-      var setSubmitting = _ref.setSubmitting;
+    onSubmit: function onSubmit(values, _ref3) {
+      var setSubmitting = _ref3.setSubmitting;
       setTimeout(function () {
         alert(JSON.stringify(values, null, 2));
         setSubmitting(false);
       }, 400);
     }
-  }, function (_ref2) {
-    var isSubmitting = _ref2.isSubmitting;
+  }, function (_ref4) {
+    var isSubmitting = _ref4.isSubmitting;
     return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(formik__WEBPACK_IMPORTED_MODULE_1__["Form"], null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(formik__WEBPACK_IMPORTED_MODULE_1__["Field"], {
       type: "text",
       name: "title",
@@ -434,21 +584,15 @@ var PortfolioCreateForm = function PortfolioCreateForm() {
       name: "description",
       label: "Description",
       component: _form_PortInput__WEBPACK_IMPORTED_MODULE_3__["default"]
-    }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(reactstrap__WEBPACK_IMPORTED_MODULE_2__["FormGroup"], null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(reactstrap__WEBPACK_IMPORTED_MODULE_2__["Label"], null, "Start Date"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(formik__WEBPACK_IMPORTED_MODULE_1__["Field"], {
-      className: "form-control",
-      type: "text",
-      name: "startDate"
-    }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(formik__WEBPACK_IMPORTED_MODULE_1__["ErrorMessage"], {
+    }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(formik__WEBPACK_IMPORTED_MODULE_1__["Field"], {
       name: "startDate",
-      component: "div"
-    })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(reactstrap__WEBPACK_IMPORTED_MODULE_2__["FormGroup"], null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(reactstrap__WEBPACK_IMPORTED_MODULE_2__["Label"], null, "End Date"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(formik__WEBPACK_IMPORTED_MODULE_1__["Field"], {
-      className: "form-control",
-      type: "text",
-      name: "endDate"
-    }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(formik__WEBPACK_IMPORTED_MODULE_1__["ErrorMessage"], {
+      label: "Start Date",
+      component: _form_PortDate__WEBPACK_IMPORTED_MODULE_4__["default"]
+    }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(formik__WEBPACK_IMPORTED_MODULE_1__["Field"], {
       name: "endDate",
-      component: "div"
-    })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+      label: "End Date",
+      component: _form_PortDate__WEBPACK_IMPORTED_MODULE_4__["default"]
+    }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
       type: "submit",
       disabled: isSubmitting
     }, "Create"));
@@ -635,6 +779,17 @@ var getCookieFromReq = function getCookieFromReq(req, cookieKey) {
 
   return cookie.split('=')[1];
 };
+
+/***/ }),
+
+/***/ "./node_modules/react-datepicker/dist/react-datepicker.css":
+/*!*****************************************************************!*\
+  !*** ./node_modules/react-datepicker/dist/react-datepicker.css ***!
+  \*****************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+
 
 /***/ }),
 
@@ -1079,6 +1234,17 @@ module.exports = require("jsonwebtoken");
 
 /***/ }),
 
+/***/ "moment":
+/*!*************************!*\
+  !*** external "moment" ***!
+  \*************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = require("moment");
+
+/***/ }),
+
 /***/ "next/link":
 /*!****************************!*\
   !*** external "next/link" ***!
@@ -1109,6 +1275,17 @@ module.exports = require("os");
 /***/ (function(module, exports) {
 
 module.exports = require("react");
+
+/***/ }),
+
+/***/ "react-datepicker":
+/*!***********************************!*\
+  !*** external "react-datepicker" ***!
+  \***********************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = require("react-datepicker");
 
 /***/ }),
 

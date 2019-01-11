@@ -3,14 +3,56 @@ import React from 'react';
 import { Formik, Form, Field, ErrorMessage } from 'formik';
 import { Button, FormGroup, Label } from 'reactstrap';
 import PortInput from '../form/PortInput';
+import PortDate from '../form/PortDate';
 
-const validateInputs = validate => {
+// ----------This code works----------
+
+// const validateInputs = values => {
+//   let errors = {};
+
+//   // Object.entries(values).forEach((key, value) => {
+//   //   if (
+//   //     !values[key] &&
+//   //     (values[key] === 'startDate' || values[key] === 'endDate')
+//   //   ) {
+//   //     errors[key] = `Field ${key} is required`;
+//   //   }
+//   // });
+//   Object.entries(values).forEach(([key, value]) => {
+//     if (!values[key]) {
+//       errors[key] = `Field ${key} is required`;
+//     }
+//   });
+
+//   const startDate = values.startDate;
+//   const endDate = values.endDate;
+
+//   if (startDate && endDate && endDate.isBefore(startDate)) {
+//     errors.endDate = 'End date cannot be before start date!';
+//   }
+
+//   return errors;
+// };
+
+const validateInputs = values => {
   let errors = {};
-  // if (!values.email) {
-  //   errors.email = 'Required';
-  // } else if (!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i.test(values.email)) {
-  //   errors.email = 'Invalid email address';
-  // }
+
+  Object.entries(values).forEach(([key, value]) => {
+    if (
+      (!values[key] && values[key] === 'startDate') ||
+      values[key] === 'endDate'
+    ) {
+      errors[key] = `Field ${key} is required`;
+    }
+  });
+
+  const startDate = values.startDate;
+  const endDate = values.endDate;
+
+  if (startDate && endDate && endDate.isBefore(startDate)) {
+    errors.endDate = 'End date cannot be before start date!';
+  }
+
   return errors;
 };
 
@@ -64,17 +106,9 @@ const PortfolioCreateForm = () => (
             component={PortInput}
           />
 
-          <FormGroup>
-            <Label>Start Date</Label>
-            <Field className="form-control" type="text" name="startDate" />
-            <ErrorMessage name="startDate" component="div" />
-          </FormGroup>
+          <Field name="startDate" label="Start Date" component={PortDate} />
 
-          <FormGroup>
-            <Label>End Date</Label>
-            <Field className="form-control" type="text" name="endDate" />
-            <ErrorMessage name="endDate" component="div" />
-          </FormGroup>
+          <Field name="endDate" label="End Date" component={PortDate} />
 
           <button type="submit" disabled={isSubmitting}>
             Create
