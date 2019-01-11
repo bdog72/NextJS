@@ -33,7 +33,7 @@ export default role => Component =>
           <BaseLayout {...this.props.auth}>
             <BasePage>
               <h1>
-                You are not authenticated. Please login to view this page{' '}
+                You are not authenticated. Please Login to view this page{' '}
               </h1>
             </BasePage>
           </BaseLayout>
