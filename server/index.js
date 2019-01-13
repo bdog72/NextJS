@@ -13,6 +13,8 @@ const config = require('./config');
 const bodyParser = require('body-parser');
 const Book = require('./models/book');
 
+const bookRoutes = require('./routes/book');
+
 const SecretData = [
   {
     title: 'SecretData 1',
@@ -44,57 +46,7 @@ app
     const server = express();
     server.use(bodyParser.json());
 
-    server.post('/api/v1/books', (req, res) => {
-      const bookData = req.body;
-
-      const book = new Book(bookData);
-
-      book.save((err, createdBook) => {
-        if (err) {
-          return res.status(422).send(err);
-        }
-        return res.json(createdBook);
-      });
-    });
-
-    server.get('/api/v1/books', (req, res) => {
-      Book.find({}, (err, allBooks) => {
-        if (err) {
-          return res.status(422).send(err);
-        }
-
-        return res.json(allBooks);
-      });
-    });
-
-    server.patch('/api/v1/books/:id', (req, res) => {
-      const bookId = req.params.id;
-      const bookData = req.body;
-
-      Book.findById(bookId, (err, foundBook) => {
-        if (err) {
-          return res.status(422).send(err);
-        }
-        foundBook.set(bookData);
-        foundBook.save((err, savedBook) => {
-          if (err) {
-            return res.status(422).send(err);
-          }
-          return res.json(foundBook);
-        });
-      });
-    });
-
-    server.delete('/api/v1/books/:id', (req, res) => {
-      const bookId = req.params.id;
-
-      Book.deleteOne({ _id: bookId }, (err, deletedBook) => {
-        if (err) {
-          return res.status(422).send(err);
-        }
-        return res.json({ status: 'DELETED' });
-      });
-    });
+    server.use('/api/v1/books', bookRoutes);
 
     server.get('/api/v1/secret', authService.checkJWT, (req, res) => {
       return res.json(SecretData);
@@ -130,3 +82,55 @@ app
     console.error(ex.stack);
     process.exit(1);
   });
+
+// server.post('/api/v1/books', (req, res) => {
+//   const bookData = req.body;
+
+//   const book = new Book(bookData);
+
+//   book.save((err, createdBook) => {
+//     if (err) {
+//       return res.status(422).send(err);
+//     }
+//     return res.json(createdBook);
+//   });
+// });
+
+// server.get('/api/v1/books', (req, res) => {
+//   Book.find({}, (err, allBooks) => {
+//     if (err) {
+//       return res.status(422).send(err);
+//     }
+
+//     return res.json(allBooks);
+//   });
+// });
+
+// server.patch('/api/v1/books/:id', (req, res) => {
+//   const bookId = req.params.id;
+//   const bookData = req.body;
+
+//   Book.findById(bookId, (err, foundBook) => {
+//     if (err) {
+//       return res.status(422).send(err);
+//     }
+//     foundBook.set(bookData);
+//     foundBook.save((err, savedBook) => {
+//       if (err) {
+//         return res.status(422).send(err);
+//       }
+//       return res.json(foundBook);
+//     });
+//   });
+// });
+
+// server.delete('/api/v1/books/:id', (req, res) => {
+//   const bookId = req.params.id;
+
+//   Book.deleteOne({ _id: bookId }, (err, deletedBook) => {
+//     if (err) {
+//       return res.status(422).send(err);
+//     }
+//     return res.json({ status: 'DELETED' });
+//   });
+// });
