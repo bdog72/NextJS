@@ -13,10 +13,8 @@
       "static/runtime/webpack.js",
       "static/runtime/main.js"
     ],
-    "/portfolioNew": [
+    "/portfolios": [
       "static/runtime/webpack.js",
-      "static/css/styles.chunk.css",
-      "static/chunks/styles.js",
       "static/runtime/main.js"
     ],
     "/portfolioEdit": [
@@ -25,7 +23,11 @@
       "static/chunks/styles.js",
       "static/runtime/main.js"
     ],
-    "/portfolios": [
+    "/index": [
+      "static/runtime/webpack.js",
+      "static/runtime/main.js"
+    ],
+    "/": [
       "static/runtime/webpack.js",
       "static/runtime/main.js"
     ]

@@ -3,7 +3,7 @@ import BaseLayout from '../components/layouts/BaseLayout';
 import BasePage from '../components/BasePage';
 import PortfolioCreateForm from '../components/portfolios/PortfolioCreateForm';
 import { Row, Col } from 'reactstrap';
-import { createPortfolio, getPortfolioById } from '../actions';
+import { updatePortfolio, getPortfolioById } from '../actions';
 import withAuth from '../components/hoc/withAuth';
 import { Router } from '../routes';
 
@@ -25,22 +25,23 @@ class PortfolioEdit extends React.Component {
     this.state = {
       error: undefined
     };
-    this.savePortfolio = this.savePortfolio.bind(this);
+    this.updatePortfolio = this.updatePortfolio.bind(this);
   }
 
-  savePortfolio(portfolioData, { setSubmitting }) {
-    // setSubmitting(true);
-    // createPortfolio(portfolioData)
-    //   .then(portfolio => {
-    //     setSubmitting(false);
-    //     this.setState({ error: undefined });
-    //     Router.pushRoute('/portfolios');
-    //   })
-    //   .catch(err => {
-    //     const error = err.message || 'Server Error';
-    //     setSubmitting(false);
-    //     this.setState({ error });
-    //   });
+  updatePortfolio(portfolioData, { setSubmitting }) {
+    setSubmitting(true);
+    // debugger;
+    updatePortfolio(portfolioData)
+      .then(portfolio => {
+        setSubmitting(false);
+        this.setState({ error: undefined });
+        Router.pushRoute('/portfolios');
+      })
+      .catch(err => {
+        const error = err.message || 'Server Error';
+        setSubmitting(false);
+        this.setState({ error });
+      });
   }
 
   render() {
@@ -48,16 +49,13 @@ class PortfolioEdit extends React.Component {
     const { portfolio } = this.props;
     return (
       <BaseLayout {...this.props.auth}>
-        <BasePage
-          className="portfolio-create-page"
-          title="Create New Portfolio"
-        >
+        <BasePage className="portfolio-create-page" title="Update Portfolio">
           <Row>
             <Col md="6">
               <PortfolioCreateForm
                 initialValues={portfolio}
                 error={error}
-                onSubmit={this.savePortfolio}
+                onSubmit={this.updatePortfolio}
               />
             </Col>
           </Row>
