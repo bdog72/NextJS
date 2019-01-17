@@ -15,6 +15,7 @@ const Book = require('./models/book');
 
 const bookRoutes = require('./routes/book');
 const portfolioRoutes = require('./routes/portfolio');
+const blogRoutes = require('./routes/blog');
 
 const SecretData = [
   {
@@ -49,6 +50,7 @@ app
 
     server.use('/api/v1/books', bookRoutes);
     server.use('/api/v1/portfolios', portfolioRoutes);
+    server.use('/api/v1/blogs', blogRoutes);
 
     server.get('/api/v1/secret', authService.checkJWT, (req, res) => {
       return res.json(SecretData);
