@@ -302,6 +302,18 @@
   font-style: italic;
   display: block; }
 
+.control-menu {
+  text-align: right;
+  border-bottom: 1px solid gray;
+  padding-bottom: 20px;
+  margin-bottom: 20px; }
+  .control-menu .title {
+    float: left;
+    font-weight: bold; }
+  .control-menu .status-box {
+    margin-right: 10px;
+    display: inline-block; }
+
 html,
 body {
   height: 100%;

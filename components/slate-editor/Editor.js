@@ -1,5 +1,6 @@
 import React from 'react';
 import HoverMenu from './HoverMenu';
+import ControlMenu from './ControlMenu';
 import { Editor } from 'slate-react';
 import { initialValue } from './initial-value';
 import { renderMark, renderNode } from './renderers';
@@ -54,6 +55,19 @@ export default class SlateEditor extends React.Component {
       rect.width / 2}px`;
   };
 
+  getTitle() {
+    return {
+      title: 'Some title',
+      subTitle: 'Some subtitle'
+    };
+  }
+
+  save() {
+    const { save } = this.props;
+    const headingValues = this.getTitle();
+    save(headingValues);
+  }
+
   // Render the editor.
   render() {
     const { isLoaded } = this.state;
@@ -62,6 +76,7 @@ export default class SlateEditor extends React.Component {
       <React.Fragment>
         {isLoaded && (
           <Editor
+            {...this.props}
             placeholder="Enter some text..."
             value={this.state.value}
             onChange={this.onChange}
@@ -73,10 +88,12 @@ export default class SlateEditor extends React.Component {
       </React.Fragment>
     );
   }
+
   renderEditor = (props, editor, next) => {
     const children = next();
     return (
       <React.Fragment>
+        <ControlMenu save={() => this.save()} />
         {children}
         <HoverMenu innerRef={menu => (this.menu = menu)} editor={editor} />
       </React.Fragment>
