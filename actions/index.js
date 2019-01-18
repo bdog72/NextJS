@@ -66,3 +66,13 @@ export const deletePortfolio = portfolioId => {
     .delete(`/portfolios/${portfolioId}`, setAuthHeader())
     .then(response => response.data);
 };
+
+// ------- Blog Actions --------- //
+
+export const saveBlog = blogData => {
+  return new Promise((resolve, reject) => {
+    setTimeout(() => {
+      resolve('promeise resolved!!!!');
+    }, 1000);
+  });
+};
