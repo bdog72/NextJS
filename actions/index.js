@@ -69,10 +69,9 @@ export const deletePortfolio = portfolioId => {
 
 // ------- Blog Actions --------- //
 
-export const saveBlog = blogData => {
-  return new Promise((resolve, reject) => {
-    setTimeout(() => {
-      resolve('promeise resolved!!!!');
-    }, 1000);
-  });
+export const createBlog = blogData => {
+  return axiosInstance
+    .post('/blogs', blogData, setAuthHeader())
+    .then(response => response.data)
+    .catch(err => rejectPromise(err));
 };

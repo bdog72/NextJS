@@ -4,6 +4,9 @@ import ControlMenu from './ControlMenu';
 import { Editor } from 'slate-react';
 import { initialValue } from './initial-value';
 import { renderMark, renderNode } from './renderers';
+import Html from 'slate-html-serializer';
+import { rules } from './rules';
+const html = new Html({ rules });
 
 // Define our app...
 export default class SlateEditor extends React.Component {
@@ -72,9 +75,12 @@ export default class SlateEditor extends React.Component {
   }
 
   save() {
+    const { value } = this.state;
     const { save } = this.props;
     const headingValues = this.getTitle();
-    save(headingValues);
+    const text = html.serialize(value);
+
+    save(text, headingValues);
   }
 
   // Render the editor.
