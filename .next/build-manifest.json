@@ -16,6 +16,10 @@
     "/blogEditorUpdate": [
       "static/runtime/webpack.js",
       "static/runtime/main.js"
+    ],
+    "/blogEditor": [
+      "static/runtime/webpack.js",
+      "static/runtime/main.js"
     ]
   }
 }
