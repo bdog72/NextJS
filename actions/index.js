@@ -75,3 +75,7 @@ export const createBlog = blogData => {
     .then(response => response.data)
     .catch(err => rejectPromise(err));
 };
+
+export const getBlogById = blogId => {
+  return axiosInstance.get(`/blogs/${blogId}`).then(response => response.data);
+};
