@@ -12,6 +12,14 @@
     "/_error": [
       "static/runtime/webpack.js",
       "static/runtime/main.js"
+    ],
+    "/blogEditorUpdate": [
+      "static/runtime/webpack.js",
+      "static/runtime/main.js"
+    ],
+    "/blogEditor": [
+      "static/runtime/webpack.js",
+      "static/runtime/main.js"
     ]
   }
 }
