@@ -305,6 +305,17 @@
 
 .base-page.blog-user-page {
   padding-top: 50px; }
+  .base-page.blog-user-page .user-blogs-list {
+    list-style: none;
+    padding-left: 0; }
+    .base-page.blog-user-page .user-blogs-list > li {
+      font-size: 28px; }
+    .base-page.blog-user-page .user-blogs-list a {
+      color: #424242; }
+  .base-page.blog-user-page .blog-status-title {
+    font-weight: bold; }
+  .base-page.blog-user-page .port-dropdown {
+    margin-left: 10px; }
 
 .control-menu {
   text-align: right;
