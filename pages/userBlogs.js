@@ -18,6 +18,14 @@ class UserBlogs extends React.Component {
     return { blogs };
   }
 
+  changeBlogStatus() {
+    alert('Changing Blog Status');
+  }
+
+  deleteBlog() {
+    alert('Deleting Blog');
+  }
+
   seperateBlogs(blogs) {
     const published = [];
     const drafts = [];
@@ -29,6 +37,19 @@ class UserBlogs extends React.Component {
     return { published, drafts };
   }
 
+  createStatus(status) {
+    return status === 'draft' ? 'Publish Story' : 'Make a Draft';
+  }
+
+  dropDownOptions = blog => {
+    const status = this.createStatus(blog.status);
+
+    return [
+      { text: status, handlers: { onClick: () => this.changeBlogStatus() } },
+      { text: 'Delete', handlers: { onClick: () => this.deleteBlog() } }
+    ];
+  };
+
   renderBlogs(blogs) {
     return (
       <ul className="user-blogs-list">
@@ -37,7 +58,7 @@ class UserBlogs extends React.Component {
             <Link route={`/blogs/${blog._id}/edit`}>
               <a>{blog.title}</a>
             </Link>
-            <PortButtonDropdown />
+            <PortButtonDropdown items={this.dropDownOptions(blog)} />
           </li>
         ))}
       </ul>

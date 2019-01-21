@@ -16,10 +16,6 @@
     "/userBlogs": [
       "static/runtime/webpack.js",
       "static/runtime/main.js"
-    ],
-    "/blogEditorUpdate": [
-      "static/runtime/webpack.js",
-      "static/runtime/main.js"
     ]
   }
 }
